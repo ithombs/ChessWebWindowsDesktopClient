@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="ChessWebWinClient.ChessBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessWebWinClient"
+             mc:Ignorable="d" 
+             >
+    <Grid>
+        <Canvas Name="chessCanvas" Height="700" Width="700">
+
+            <Line Stroke="Black" X1="112" Y1="120" X2="612" Y2="120"  RenderTransformOrigin="5.3,3.4"></Line>
+            <Line Stroke="Black" X1="112" Y1="621" X2="612" Y2="621"  RenderTransformOrigin="5.3,3.4"></Line>
+
+            <Line Stroke="Black" X1="112" Y1="120" X2="112" Y2="621"></Line>
+            <Line Stroke="Black" X1="612" Y1="120" X2="612" Y2="621"></Line>
+
+            <Grid x:Name="LayoutRoot" Height="701" Width="700" Canvas.Left="10" Canvas.Top="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="49*"/>
+                </Grid.ColumnDefinitions>
+                <UniformGrid Height="500" Width="500" HorizontalAlignment="Right" Margin="0,100,98,101" Rows="8" Columns="8" Grid.Column="1">
+
+                    <Rectangle Name="board0_0" ToolTip="a8" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board0_1" ToolTip="b8" Fill="White" />
+                    <Rectangle Name="board0_2" ToolTip="c8" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board0_3" ToolTip="d8" Fill="White" />
+                    <Rectangle Name="board0_4" ToolTip="e8" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board0_5" ToolTip="f8" Fill="White" />
+                    <Rectangle Name="board0_6" ToolTip="g8" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board0_7" ToolTip="h8" Fill="White" />
+                    <!-- end row 1-->
+                    <Rectangle Name="board1_0" ToolTip="a7" Fill="White" />
+                    <Rectangle Name="board1_1" ToolTip="b7" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board1_2" ToolTip="c7" Fill="White" />
+                    <Rectangle Name="board1_3" ToolTip="d7" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board1_4" ToolTip="e7" Fill="White" />
+                    <Rectangle Name="board1_5" ToolTip="f7" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board1_6" ToolTip="g7" Fill="White" />
+                    <Rectangle Name="board1_7" ToolTip="h7" Fill="LightGray"></Rectangle>
+                    <!-- end row 2-->
+                    <Rectangle AllowDrop="true" Name="board2_0" ToolTip="a6" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board2_1" ToolTip="b6" Fill="White" />
+                    <Rectangle Name="board2_2" ToolTip="c6" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board2_3" ToolTip="d6" Fill="White" />
+                    <Rectangle Name="board2_4" ToolTip="e6" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board2_5" ToolTip="f6" Fill="White" />
+                    <Rectangle Name="board2_6" ToolTip="g6" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board2_7" ToolTip="h6" Fill="White" />
+                    <!--end row 3-->
+                    <Rectangle Name="board3_0" ToolTip="a5" Fill="White" />
+                    <Rectangle Name="board3_1" ToolTip="b5" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board3_2" ToolTip="c5" Fill="White" />
+                    <Rectangle Name="board3_3" ToolTip="d5" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board3_4" ToolTip="e5" Fill="White" />
+                    <Rectangle Name="board3_5" ToolTip="f5" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board3_6" ToolTip="g5" Fill="White" />
+                    <Rectangle Name="board3_7" ToolTip="h5" Fill="LightGray"></Rectangle>
+                    <!--end row 4 -->
+                    <Rectangle Name="board4_0" ToolTip="a4" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board4_1" ToolTip="b4" Fill="White" />
+                    <Rectangle Name="board4_2" ToolTip="c4" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board4_3" ToolTip="d4" Fill="White" />
+                    <Rectangle Name="board4_4" ToolTip="e4" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board4_5" ToolTip="f4" Fill="White" />
+                    <Rectangle Name="board4_6" ToolTip="g4" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board4_7" ToolTip="h4" Fill="White" />
+                    <!-- end row 5-->
+                    <Rectangle Name="board5_0" ToolTip="a3" Fill="White" />
+                    <Rectangle Name="board5_1" ToolTip="b3" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board5_2" ToolTip="c3" Fill="White" />
+                    <Rectangle Name="board5_3" ToolTip="d3" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board5_4" ToolTip="e3" Fill="White" />
+                    <Rectangle Name="board5_5" ToolTip="f3" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board5_6" ToolTip="g3" Fill="White" />
+                    <Rectangle Name="board5_7" ToolTip="h3" Fill="LightGray"></Rectangle>
+                    <!--end row 6-->
+                    <Rectangle Name="board6_0" ToolTip="a2" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board6_1" ToolTip="b2" Fill="White" />
+                    <Rectangle Name="board6_2" ToolTip="c2" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board6_3" ToolTip="d2" Fill="White" />
+                    <Rectangle Name="board6_4" ToolTip="e2" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board6_5" ToolTip="f2" Fill="White" />
+                    <Rectangle Name="board6_6" ToolTip="g2" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board6_7" ToolTip="h2" Fill="White" />
+                    <!--end row 7-->
+                    <Rectangle Name="board7_0" ToolTip="a1" Fill="White" />
+                    <Rectangle Name="board7_1" ToolTip="b1" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board7_2" ToolTip="c1" Fill="White" />
+                    <Rectangle Name="board7_3" ToolTip="d1" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board7_4" ToolTip="e1" Fill="White" />
+                    <Rectangle Name="board7_5" ToolTip="f1" Fill="LightGray"></Rectangle>
+                    <Rectangle Name="board7_6" ToolTip="g1" Fill="White" />
+                    <Rectangle Name="board7_7" ToolTip="h1" Fill="LightGray"></Rectangle>
+
+                    <!-- end row 8-->
+
+                </UniformGrid>
+            </Grid>
+            <!--Place chess tiles here -->
+            <local:ThumbChessPiece x:Name="testPiece1" pieceID="0" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="112" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Rectangle Height="61" Width="61" Fill="Bisque"></Rectangle>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+            <!--Place chess tiles here -->
+        </Canvas>
+
+    </Grid>
+</UserControl>

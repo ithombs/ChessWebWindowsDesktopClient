@@ -104,15 +104,266 @@
             <Rectangle x:Name="board7_6" ToolTip="g1" Fill="White" Height="62" Width="62" Canvas.Left="484" Canvas.Top="554"></Rectangle>
             <Rectangle x:Name="board7_7" ToolTip="h1" Fill="LightGray" Height="62" Width="62" Canvas.Left="546" Canvas.Top="554"></Rectangle>
             <!--row 8-->
+            <!--Place chess tiles here -->
 
-            <local:ThumbChessPiece x:Name="testPiece1" pieceID="0" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="283" Canvas.Top="28" Width="62" Height="62">
+            <!--Place chess pieces here -->
+            <local:ThumbChessPiece pieceID="0" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="112" Canvas.Top="120" Width="62" Height="62">
                 <Thumb.Template>
                     <ControlTemplate>
                         <Image Source="Resources/black_rook.png"></Image>
                     </ControlTemplate>
                 </Thumb.Template>
             </local:ThumbChessPiece>
-            <!--Place chess tiles here -->
+
+            <local:ThumbChessPiece pieceID="1" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="174" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_knight.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="2" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="236" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_bishop.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="3" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="298" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_queen.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="4" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="360" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_king.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="5" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="422" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_bishop.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="6" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="484" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_knight.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="7" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="548" Canvas.Top="120" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_rook.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="8" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="112" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="9" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="174" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="10" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="236" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="11" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="298" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="12" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="360" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="13" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="422" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="14" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="484" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="15" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="546" Canvas.Top="182" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/black_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="16" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="112" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="17" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="174" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="18" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="236" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="19" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="298" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="20" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="360" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="21" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="422" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="22" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="484" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="23" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="546" Canvas.Top="492" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_pawn.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="24" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="112" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_rook.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="25" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="174" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_knight.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="26" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="236" Canvas.Top="556" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_bishop.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="27" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="298" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_queen.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="28" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="360" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_king.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="29" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="422" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_bishop.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="30" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="484" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_knight.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <local:ThumbChessPiece pieceID="31" PreviewMouseUp="testPiece1_PreviewMouseDown" DragDelta="ThumbChessPiece_DragDelta" Canvas.Left="546" Canvas.Top="554" Width="62" Height="62">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Image Source="Resources/white_rook.png"></Image>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </local:ThumbChessPiece>
+
+            <!--Place chess pieces here -->
         </Canvas>
 
     </Grid>

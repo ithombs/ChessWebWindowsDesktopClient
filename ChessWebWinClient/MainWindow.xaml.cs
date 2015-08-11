@@ -21,61 +21,26 @@ namespace ChessWebWinClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        WebSocket ws;
+        ChessWebWebSocketComm socketComm;
 
         public MainWindow()
         {
             InitializeComponent();
-            ws = new WebSocket("ws://localhost:8080/WebSocks/test1");
-            ws.Opened += Ws_Opened;
-            ws.MessageReceived += Ws_MessageReceived;
-            ws.Closed += Ws_Closed;
-            ws.Open();
             
-        }
-
-        private void Ws_Closed(object sender, EventArgs e)
-        {
-            Console.WriteLine("Connection closed: " + e.ToString());
-        }
-
-        private void Ws_MessageReceived(object sender, MessageReceivedEventArgs e)
-        {
-            Console.WriteLine("Message Recieved: " + e.Message);
-        }
-
-        private void Ws_Opened(object sender, EventArgs e)
-        {
-            Console.WriteLine("Connection opened...");
-            ws.Send("Connecting from ChessWebWinClient");
+            socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1");
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            ws.Close();
+            socketComm.Close();
         }
 
-
-        private void board0_0_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnEnterQueue_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("0|0");
-            
+            socketComm.EnterQueue();
         }
 
-        private void id0_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("id-0");
-        }
-
-        private void id8_MouseMove(object sender, MouseEventArgs e)
-        {
-            Image i = sender as Image;
-            if(i != null && e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragDrop.DoDragDrop(i, i.Source, DragDropEffects.Copy);
-            }
-        }
-
+        /*
         private void ThumbChessPiece_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
             //Console.WriteLine("thumbChessPiece drag");
@@ -85,5 +50,6 @@ namespace ChessWebWinClient
             Canvas.SetLeft(thumb, Canvas.GetLeft(thumb) + e.HorizontalChange);
             Canvas.SetTop(thumb, Canvas.GetTop(thumb) + e.VerticalChange);
         }
+        */
     }
 }

@@ -27,6 +27,7 @@ namespace ChessWebWinClient
             hitResultsList = new List<HitTestResult>();
             
         }
+        //TODO: make events that can send the moves and such
         
 
         private void ThumbChessPiece_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)

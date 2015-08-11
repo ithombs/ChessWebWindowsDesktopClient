@@ -5,18 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessWebWinClient"
         mc:Ignorable="d"
-        Title="ChessWebWinClient" Height="724" Width="726" Closed="Window_Closed">
+        Title="ChessWebWinClient" Height="890.275" Width="921" Closed="Window_Closed">
     <Grid>
         <Canvas>
-            <local:ThumbChessPiece Canvas.Left="250" Canvas.Top="64" DragDelta="ThumbChessPiece_DragDelta" Panel.ZIndex="5" RenderTransformOrigin="0.26,2.29">
-                <Thumb.Template>
-                    <ControlTemplate>
-                        <Rectangle Fill="Black" Height="50" Width="50"></Rectangle>
-                    </ControlTemplate>
-                </Thumb.Template>
-            </local:ThumbChessPiece>
 
-            <local:ChessBoard></local:ChessBoard>
+
+            <local:ChessBoard Canvas.Left="84" Canvas.Top="-46" Height="674" Width="720"></local:ChessBoard>
+            <Button x:Name="btnEnterQueue" Content="Enter Queue" Click="btnEnterQueue_Click" Canvas.Left="84" Canvas.Top="664" Width="74"/>
         </Canvas>
     </Grid>
 </Window>

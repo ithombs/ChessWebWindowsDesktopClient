@@ -22,7 +22,7 @@ namespace ChessWebWinClient
             webSocket.MessageReceived += WebSocket_MessageReceived;
             webSocket.Closed += WebSocket_Closed;
 
-            //webSocket.Open();
+            webSocket.Open();
         }
 
         public ChessWebWebSocketComm(string uri, System.Windows.Controls.Canvas canvas)
@@ -35,7 +35,7 @@ namespace ChessWebWinClient
             webSocket.Closed += WebSocket_Closed;
 
             moveHelper = new ChessPieceMoveHelper(canvas);
-            //webSocket.Open();
+            webSocket.Open();
         }
 
         private void WebSocket_Opened(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace ChessWebWinClient
         */
         public void EnterQueue(string userName = "guest")
         {
-            webSocket.Open();
+            
             string connectionString = "connect:";
 
             webSocket.Send(connectionString + userName);

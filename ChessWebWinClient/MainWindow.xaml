@@ -10,8 +10,10 @@
         <Canvas>
 
 
-            <local:ChessBoard Canvas.Left="84" Canvas.Top="-46" Height="674" Width="720"></local:ChessBoard>
+            <local:ChessBoard x:Name="chessBoard" PieceMoved="chessBoard_PieceMoved" Canvas.Left="84" Canvas.Top="-46" Height="674" Width="720"></local:ChessBoard>
             <Button x:Name="btnEnterQueue" Content="Enter Queue" Click="btnEnterQueue_Click" Canvas.Left="84" Canvas.Top="664" Width="74"/>
+            <Button x:Name="btnTestMove" Content="TestMove" Click="btnTestMove_Click" Canvas.Left="549" Canvas.Top="664" Width="76"/>
         </Canvas>
+        <Label x:Name="lblTesting" Content="Label" HorizontalAlignment="Left" Margin="270,661,0,0" VerticalAlignment="Top" Width="179"/>
     </Grid>
 </Window>

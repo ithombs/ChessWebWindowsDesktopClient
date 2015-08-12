@@ -27,7 +27,9 @@ namespace ChessWebWinClient
         {
             InitializeComponent();
             
-            socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1");
+            socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1", chessBoard.chessCanvas);
+
+            
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -40,16 +42,29 @@ namespace ChessWebWinClient
             socketComm.EnterQueue();
         }
 
-        /*
-        private void ThumbChessPiece_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        //Send the move data to the server
+        private void chessBoard_PieceMoved(int id, string tile)
         {
-            //Console.WriteLine("thumbChessPiece drag");
-            ThumbChessPiece thumb = e.Source as ThumbChessPiece;
-            //Console.WriteLine(thumb.ToString());
+            lblTesting.Content = id + tile;
+            string moveProtocol = id + "|" + tile.Substring(5, 1) + "|" + tile.Substring(7, 1);
+            Console.WriteLine(moveProtocol);
 
-            Canvas.SetLeft(thumb, Canvas.GetLeft(thumb) + e.HorizontalChange);
-            Canvas.SetTop(thumb, Canvas.GetTop(thumb) + e.VerticalChange);
+            socketComm.SendMove(moveProtocol);
         }
-        */
+
+        private void btnTestMove_Click(object sender, RoutedEventArgs e)
+        {
+            ThumbChessPiece p;
+            foreach(UIElement uie in chessBoard.chessCanvas.Children)
+            {
+                p = uie as ThumbChessPiece;
+
+                if(p != null && p.pieceID == 0)
+                {
+                    Canvas.SetTop(p, 50);
+                    Canvas.SetLeft(p, 50);
+                }
+            }
+        }
     }
 }

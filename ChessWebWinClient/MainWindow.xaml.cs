@@ -19,8 +19,14 @@ namespace ChessWebWinClient
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+   
+
     public partial class MainWindow : Window
     {
+        public static Label testingLabel;
+        public static DataGrid sMoveList;
         ChessWebWebSocketComm socketComm;
 
         public MainWindow()
@@ -28,8 +34,11 @@ namespace ChessWebWinClient
             InitializeComponent();
             
             socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1", chessBoard.chessCanvas);
+            moveList.Items.Add(new BasicMoveData {to =  "e3", from = "f6"});
 
-            
+            //Controls that will be modified outside of this class are passed as static references (Yeah, yeah...data binding, I know)
+            testingLabel = lblTesting;
+            sMoveList = moveList;
         }
 
         private void Window_Closed(object sender, EventArgs e)

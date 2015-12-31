@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BasicMoveData.cs" />
     <Compile Include="ChessPieceMoveHelper.cs" />
     <Compile Include="ChessWebWebSocketComm.cs" />
     <Compile Include="ThumbChessPiece.cs" />

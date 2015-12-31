@@ -17,23 +17,19 @@ namespace ChessWebWinClient
 
         public void MovePiece(string msg)
         {
-            
-            
-
             string tileX, tileY, pieceID;
 
             pieceID = msg.Split('|')[0];
             tileX = msg.Split('|')[1];
             tileY = msg.Split('|')[2];
             
-
             Console.WriteLine(msg);
 
             //------------Do the actual piece moving here--------------
             ThumbChessPiece chessPiece;
             System.Windows.Shapes.Rectangle tile = null;
 
-            //Get the tile that the move piece is moving to from the canvas
+            //Get the tile that the moved piece is moving to from the canvas
             //NOTE: Dispatcher is required in order to access the UIElement from the UI thread. Program crashes without use of the Dispatcher
             chessBoard.Dispatcher.Invoke((Action)(() =>
             {

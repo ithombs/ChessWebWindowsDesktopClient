@@ -53,7 +53,13 @@ namespace ChessWebWinClient
             }
             else if(e.Message.StartsWith("opponent:"))
             {
-                Console.WriteLine(e.Message.Split(':')[1]);
+                string opponentName = e.Message.Split(':')[1];
+                Console.WriteLine(opponentName);
+               
+                MainWindow.testingLabel.Dispatcher.Invoke((Action)(() =>
+                {
+                    MainWindow.testingLabel.Content = opponentName;
+                }));
             }
             else if(e.Message.StartsWith("side:"))
             {

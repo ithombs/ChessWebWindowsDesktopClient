@@ -8,11 +8,15 @@
         Title="ChessWebWinClient" Height="890.275" Width="921" Closed="Window_Closed">
     <Grid>
         <Canvas>
-
-
-            <local:ChessBoard x:Name="chessBoard" PieceMoved="chessBoard_PieceMoved" Canvas.Left="84" Canvas.Top="-46" Height="674" Width="720"></local:ChessBoard>
+            <local:ChessBoard x:Name="chessBoard" PieceMoved="chessBoard_PieceMoved" Canvas.Left="84" Canvas.Top="-46" Height="705" Width="686"></local:ChessBoard>
             <Button x:Name="btnEnterQueue" Content="Enter Queue" Click="btnEnterQueue_Click" Canvas.Left="84" Canvas.Top="664" Width="74"/>
             <Button x:Name="btnTestMove" Content="TestMove" Click="btnTestMove_Click" Canvas.Left="549" Canvas.Top="664" Width="76"/>
+            <DataGrid x:Name="moveList" Canvas.Left="10" Canvas.Top="76" Height="495" Width="130"  HorizontalAlignment="Left" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="From" Width="64" Binding="{Binding Path=to}"/>
+                    <DataGridTextColumn Header="To" Width="64" Binding="{Binding Path=from}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Canvas>
         <Label x:Name="lblTesting" Content="Label" HorizontalAlignment="Left" Margin="270,661,0,0" VerticalAlignment="Top" Width="179"/>
     </Grid>

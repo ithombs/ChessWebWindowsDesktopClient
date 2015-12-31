@@ -58,7 +58,7 @@ namespace ChessWebWinClient
                
                 MainWindow.testingLabel.Dispatcher.Invoke((Action)(() =>
                 {
-                    MainWindow.testingLabel.Content = opponentName;
+                    MainWindow.oppName.Content = opponentName;
                 }));
             }
             else if(e.Message.StartsWith("side:"))
@@ -102,13 +102,22 @@ namespace ChessWebWinClient
         */
         public void MovePiece(string msg)
         {
-            //move a piece without direct user interaction(uses ChessPieceMoveHelper class to do so, cause abstraction)
+            //move a piece without direct user interaction(uses ChessPieceMoveHelper class to do so. Cause abstraction.)
             moveHelper.MovePiece(msg);
+
+            //add move data to moveList
         }
 
         public void SendMove(string msg)
         {
             webSocket.Send(msg);
+            Console.WriteLine("Sending move: {0}", msg);
+            //add move data to moveList
+            MainWindow.sMoveList.Dispatcher.Invoke((Action)(() =>
+            {
+                //BasicMoveData newMove = new BasicMoveData() { };
+                //MainWindow.sMoveList.Items.Add
+            }));
         }
     }
 }

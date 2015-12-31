@@ -27,6 +27,8 @@ namespace ChessWebWinClient
     {
         public static Label testingLabel;
         public static DataGrid sMoveList;
+        public static Label queueTime;
+        public static Label oppName;
         ChessWebWebSocketComm socketComm;
 
         public MainWindow()
@@ -35,10 +37,12 @@ namespace ChessWebWinClient
             
             socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1", chessBoard.chessCanvas);
             moveList.Items.Add(new BasicMoveData {to =  "e3", from = "f6"});
+            moveList.Items.Add(new BasicMoveData { to = "e20", from = "g3" });
 
             //Controls that will be modified outside of this class are passed as static references (Yeah, yeah...data binding, I know)
-            testingLabel = lblTesting;
             sMoveList = moveList;
+            queueTime = lblQueueTimer;
+            oppName = lblOpponent;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -54,7 +58,7 @@ namespace ChessWebWinClient
         //Send the move data to the server
         private void chessBoard_PieceMoved(int id, string tile)
         {
-            lblTesting.Content = id + tile;
+            //lblTesting.Content = id + tile;
             string moveProtocol = id + "|" + tile.Substring(5, 1) + "|" + tile.Substring(7, 1);
             Console.WriteLine(moveProtocol);
 

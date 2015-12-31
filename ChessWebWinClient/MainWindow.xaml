@@ -13,11 +13,15 @@
             <Button x:Name="btnTestMove" Content="TestMove" Click="btnTestMove_Click" Canvas.Left="549" Canvas.Top="664" Width="76"/>
             <DataGrid x:Name="moveList" Canvas.Left="10" Canvas.Top="76" Height="495" Width="130"  HorizontalAlignment="Left" HeadersVisibility="Column">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="From" Width="64" Binding="{Binding Path=to}"/>
-                    <DataGridTextColumn Header="To" Width="64" Binding="{Binding Path=from}"/>
+                    <DataGridTextColumn Header="From" Width="64" Binding="{Binding Path=to}" CanUserSort="False"/>
+                    <DataGridTextColumn Header="To" Width="64" Binding="{Binding Path=from}" CanUserSort="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Canvas>
-        <Label x:Name="lblTesting" Content="Label" HorizontalAlignment="Left" Margin="270,661,0,0" VerticalAlignment="Top" Width="179"/>
+        <Label Content="Opponent: " HorizontalAlignment="Left" Margin="706,76,0,0" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="lblOpponent" Content="-----" HorizontalAlignment="Left" Margin="772,76,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label x:Name="lblColor" Content="-----" HorizontalAlignment="Left" Margin="744,107,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label Content="Side: " HorizontalAlignment="Left" Margin="706,107,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label x:Name="lblQueueTimer" Content="Time goes here" HorizontalAlignment="Left" Margin="387,10,0,0" VerticalAlignment="Top" Width="141"/>
     </Grid>
 </Window>

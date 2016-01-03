@@ -25,24 +25,47 @@ namespace ChessWebWinClient
 
     public partial class MainWindow : Window
     {
-        public static Label testingLabel;
+        public static Label side;
         public static DataGrid sMoveList;
         public static Label queueTime;
         public static Label oppName;
+        public static Dictionary<String, String> tileNames;
         ChessWebWebSocketComm socketComm;
 
         public MainWindow()
         {
             InitializeComponent();
+            initTileDictionary();
             
             socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1", chessBoard.chessCanvas);
-            moveList.Items.Add(new BasicMoveData {to =  "e3", from = "f6"});
-            moveList.Items.Add(new BasicMoveData { to = "e20", from = "g3" });
+            //moveList.Items.Add(new BasicMoveData {to =  "e3", from = "f6"});
+            //moveList.Items.Add(new BasicMoveData {to = "e20", from = "g3"});
 
             //Controls that will be modified outside of this class are passed as static references (Yeah, yeah...data binding, I know)
             sMoveList = moveList;
             queueTime = lblQueueTimer;
             oppName = lblOpponent;
+            side = lblColor;
+        }
+
+        private void initTileDictionary()
+        {
+            tileNames = new Dictionary<string, string>();
+
+            foreach (System.Windows.UIElement uie in chessBoard.chessCanvas.Children)
+            {
+                System.Windows.Shapes.Rectangle tile = uie as System.Windows.Shapes.Rectangle;
+                if(tile != null)
+                {
+                    string pieceID = tile.Name;
+                    pieceID = pieceID.Replace("board", "");
+                    pieceID = pieceID.Replace("_", "|");
+
+                    tileNames.Add(pieceID, tile.ToolTip.ToString());
+
+                    Console.WriteLine(pieceID + " " + tileNames[pieceID]);
+                }
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -61,6 +84,7 @@ namespace ChessWebWinClient
             //lblTesting.Content = id + tile;
             string moveProtocol = id + "|" + tile.Substring(5, 1) + "|" + tile.Substring(7, 1);
             Console.WriteLine(moveProtocol);
+            //Console.WriteLine("From: {0} - To: {1}", move.from, move.to);
 
             socketComm.SendMove(moveProtocol);
         }

@@ -5,9 +5,13 @@ using System.Text;
 
 namespace ChessWebWinClient
 {
-    class BasicMoveData
+    public class BasicMoveData
     {
-        public string to { get; set; }
+        public BasicMoveData()
+        {
+
+        }
         public string from { get; set; }
+        public string to { get; set; }
     }
 }

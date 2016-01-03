@@ -12,6 +12,7 @@ namespace ChessWebWinClient
         private WebSocket webSocket;
         private string uri;
         private ChessPieceMoveHelper moveHelper;
+        private BasicMoveData moveData;
 
         public ChessWebWebSocketComm(string uri)
         {
@@ -41,10 +42,12 @@ namespace ChessWebWinClient
         private void WebSocket_Opened(object sender, EventArgs e)
         {
             Console.WriteLine("Connection established to - {0}", uri);
+            moveData = new BasicMoveData();
         }
 
         private void WebSocket_MessageReceived(object sender, MessageReceivedEventArgs e)
         {
+            
             Console.WriteLine("Message received: {0}", e.Message);
 
             if(e.Message.StartsWith("move:"))
@@ -56,23 +59,46 @@ namespace ChessWebWinClient
                 string opponentName = e.Message.Split(':')[1];
                 Console.WriteLine(opponentName);
                
-                MainWindow.testingLabel.Dispatcher.Invoke((Action)(() =>
+                MainWindow.oppName.Dispatcher.Invoke((Action)(() =>
                 {
                     MainWindow.oppName.Content = opponentName;
                 }));
             }
             else if(e.Message.StartsWith("side:"))
             {
+                string side = e.Message.Split(':')[1];
                 Console.WriteLine(e.Message.Split(':')[1]);
+
+                MainWindow.side.Dispatcher.Invoke((Action)(() =>
+                {
+                    MainWindow.side.Content = "Side: " + side;
+                }));
             }
             else if(e.Message.StartsWith("ml1:"))
             {
-
+                string from = e.Message.Split(':')[1];
+                moveData.from = from;
+                Console.WriteLine("{0}", from);
             }
             else if(e.Message.StartsWith("ml2:"))
             {
-
+                string to = e.Message.Split(':')[1];
+                moveData.to= to;
+                Console.WriteLine("{0}", to);
+                addMoveToList(moveData);
             }
+        }
+
+        private void addMoveToList(BasicMoveData moveData)
+        {
+            //Console.WriteLine("{0} - {1}", moveData.from, moveData.to);
+            moveData.to = MainWindow.tileNames[moveData.to];
+            moveData.from = MainWindow.tileNames[moveData.from];
+
+            MainWindow.sMoveList.Dispatcher.Invoke((Action)(() =>
+            {
+                MainWindow.sMoveList.Items.Add(moveData);
+            }));
         }
 
         private void WebSocket_Closed(object sender, EventArgs e)

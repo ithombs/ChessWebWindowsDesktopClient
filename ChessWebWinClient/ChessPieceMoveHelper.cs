@@ -18,6 +18,7 @@ namespace ChessWebWinClient
         public void MovePiece(string msg)
         {
             string tileX, tileY, pieceID;
+            string from, to;
 
             pieceID = msg.Split('|')[0];
             tileX = msg.Split('|')[1];

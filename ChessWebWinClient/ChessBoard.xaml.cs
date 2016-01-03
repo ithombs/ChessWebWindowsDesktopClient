@@ -19,13 +19,12 @@ namespace ChessWebWinClient
     /// </summary>
     public partial class ChessBoard : UserControl
     {
-        List<HitTestResult> hitResultsList;
+        private List<HitTestResult> hitResultsList;
 
         public ChessBoard()
         {
             InitializeComponent();
             hitResultsList = new List<HitTestResult>();
-            
         }
         //TODO: make events that can send the moves and such
         public delegate void PieceMovedEventHandler(int id, string tile);
@@ -50,7 +49,7 @@ namespace ChessWebWinClient
             Canvas.SetTop(thumb, Canvas.GetTop(thumb) + e.VerticalChange);
         }
 
-        private void testPiece1_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void testPiece1_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             hitResultsList.Clear();
 
@@ -62,14 +61,33 @@ namespace ChessWebWinClient
                 new PointHitTestParameters(e.GetPosition(chessCanvas)));
 
             Rectangle r = (Rectangle)hitResultsList.Last().VisualHit;
-            Console.WriteLine("From Mouse Down: " + r.Name);
-            Console.WriteLine("Top:{0} | Left: {1}", Canvas.GetTop(r), Canvas.GetLeft(r));
+            Console.WriteLine("From MouseUp: " + r.ToolTip.ToString());
+            //Console.WriteLine("Top:{0} | Left: {1}", Canvas.GetTop(r), Canvas.GetLeft(r));
             
             //Snap the piece to the square it was dropped in (where the mouse was released)
             Canvas.SetTop(piece, Canvas.GetTop(r));
             Canvas.SetLeft(piece, Canvas.GetLeft(r));
 
+            //move.to = r.ToolTip.ToString();
+
             RaisePieceMoved(piece.pieceID, r.Name);
+        }
+
+        private void testPiece1_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            hitResultsList.Clear();
+
+            ThumbChessPiece piece = (ThumbChessPiece)sender;
+            //Console.WriteLine("Top:{0} | Left: {1}", Canvas.GetTop(piece), Canvas.GetLeft(piece));
+
+            VisualTreeHelper.HitTest(chessCanvas, null,
+                new HitTestResultCallback(MyHitTestResults),
+                new PointHitTestParameters(e.GetPosition(chessCanvas)));
+
+            Rectangle r = (Rectangle)hitResultsList.Last().VisualHit;
+
+            Console.WriteLine("From MouseDown: {0}", r.ToolTip.ToString());
+            //move.from = r.ToolTip.ToString();
         }
 
         public HitTestResultBehavior MyHitTestResults(HitTestResult result)
@@ -79,5 +97,10 @@ namespace ChessWebWinClient
             return HitTestResultBehavior.Continue;
         }
 
+        private void board0_0_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Rectangle r = (Rectangle)sender;
+            Console.WriteLine("From rectangle MouseDown: {0}", r.ToolTip);
+        }
     }
 }

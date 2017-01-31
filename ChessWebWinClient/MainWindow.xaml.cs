@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WebSocket4Net;
 
 namespace ChessWebWinClient
 {
@@ -37,7 +36,7 @@ namespace ChessWebWinClient
             InitializeComponent();
             initTileDictionary();
             
-            socketComm = new ChessWebWebSocketComm("ws://localhost:8080/WebSocks/test1", chessBoard.chessCanvas);
+            socketComm = new ChessWebWebSocketComm("ws://localhost:8080/boot2/chess/websocket?client=windows", chessBoard.chessCanvas);
             //moveList.Items.Add(new BasicMoveData {to =  "e3", from = "f6"});
             //moveList.Items.Add(new BasicMoveData {to = "e20", from = "g3"});
 

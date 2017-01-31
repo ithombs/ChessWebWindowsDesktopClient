@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WebSocket4Net;
+using WebSocketSharp;
 
 
 namespace ChessWebWinClient
@@ -19,11 +19,11 @@ namespace ChessWebWinClient
             this.uri = uri;
 
             webSocket = new WebSocket(uri);
-            webSocket.Opened += WebSocket_Opened;
-            webSocket.MessageReceived += WebSocket_MessageReceived;
-            webSocket.Closed += WebSocket_Closed;
+            webSocket.OnOpen += WebSocket_Opened; 
+            webSocket.OnMessage += WebSocket_MessageReceived;
+            webSocket.OnClose += WebSocket_Closed;
 
-            webSocket.Open();
+            webSocket.Connect();
         }
 
         public ChessWebWebSocketComm(string uri, System.Windows.Controls.Canvas canvas)
@@ -31,12 +31,12 @@ namespace ChessWebWinClient
             this.uri = uri;
 
             webSocket = new WebSocket(uri);
-            webSocket.Opened += WebSocket_Opened;
-            webSocket.MessageReceived += WebSocket_MessageReceived;
-            webSocket.Closed += WebSocket_Closed;
+            webSocket.OnOpen += WebSocket_Opened;
+            webSocket.OnMessage += WebSocket_MessageReceived;
+            webSocket.OnClose += WebSocket_Closed;
 
             moveHelper = new ChessPieceMoveHelper(canvas);
-            webSocket.Open();
+            webSocket.Connect();
         }
 
         private void WebSocket_Opened(object sender, EventArgs e)
@@ -45,18 +45,18 @@ namespace ChessWebWinClient
             moveData = new BasicMoveData();
         }
 
-        private void WebSocket_MessageReceived(object sender, MessageReceivedEventArgs e)
+        private void WebSocket_MessageReceived(object sender, MessageEventArgs e)
         {
             
-            Console.WriteLine("Message received: {0}", e.Message);
+            Console.WriteLine("Message received: {0}", e.Data);
 
-            if(e.Message.StartsWith("move:"))
+            if(e.Data.StartsWith("move:"))
             {
-                MovePiece(e.Message.Split(':')[1]);
+                MovePiece(e.Data.Split(':')[1]);
             }
-            else if(e.Message.StartsWith("opponent:"))
+            else if(e.Data.StartsWith("opponent:"))
             {
-                string opponentName = e.Message.Split(':')[1];
+                string opponentName = e.Data.Split(':')[1];
                 Console.WriteLine(opponentName);
                
                 MainWindow.oppName.Dispatcher.Invoke((Action)(() =>
@@ -64,28 +64,36 @@ namespace ChessWebWinClient
                     MainWindow.oppName.Content = opponentName;
                 }));
             }
-            else if(e.Message.StartsWith("side:"))
+            else if(e.Data.StartsWith("side:"))
             {
-                string side = e.Message.Split(':')[1];
-                Console.WriteLine(e.Message.Split(':')[1]);
+                string side = e.Data.Split(':')[1];
+                Console.WriteLine(e.Data.Split(':')[1]);
 
                 MainWindow.side.Dispatcher.Invoke((Action)(() =>
                 {
                     MainWindow.side.Content = "Side: " + side;
                 }));
             }
-            else if(e.Message.StartsWith("ml1:"))
+            else if(e.Data.StartsWith("ml1:"))
             {
-                string from = e.Message.Split(':')[1];
+                string from = e.Data.Split(':')[1];
                 moveData.from = from;
                 Console.WriteLine("{0}", from);
             }
-            else if(e.Message.StartsWith("ml2:"))
+            else if(e.Data.StartsWith("ml2:"))
             {
-                string to = e.Message.Split(':')[1];
+                string to = e.Data.Split(':')[1];
                 moveData.to= to;
                 Console.WriteLine("{0}", to);
                 addMoveToList(moveData);
+            }
+            else if (e.Data.StartsWith("gameOver"))
+            {
+                string winner = e.Data.Split(':')[1];
+                MainWindow.queueTime.Dispatcher.Invoke((Action)(() =>
+                {
+                    MainWindow.queueTime.Content = "Winner: " + winner;
+                }));
             }
         }
 
@@ -112,15 +120,13 @@ namespace ChessWebWinClient
         }
 
         /*
-            To enter queue for a PvP game, the connection string is as follows: "connect:" + userName
-            A username of "guest" is used for non-logged in users.
+            To enter queue for a PvP game, the connection string is as follows: "connect"
         */
-        public void EnterQueue(string userName = "guest")
+        public void EnterQueue(string gameType = "human")
         {
             
-            string connectionString = "connect:";
-
-            webSocket.Send(connectionString + userName);
+            string connectionString = "connect:" + gameType;
+            webSocket.Send(connectionString);
         }
 
         /*
@@ -139,11 +145,18 @@ namespace ChessWebWinClient
             webSocket.Send(msg);
             Console.WriteLine("Sending move: {0}", msg);
             //add move data to moveList
+            /*
             MainWindow.sMoveList.Dispatcher.Invoke((Action)(() =>
             {
                 //BasicMoveData newMove = new BasicMoveData() { };
                 //MainWindow.sMoveList.Items.Add
             }));
+            */
+        }
+
+        public void Surrender()
+        {
+            webSocket.Send("surr");
         }
     }
 }

@@ -90,17 +90,7 @@ namespace ChessWebWinClient
 
         private void btnTestMove_Click(object sender, RoutedEventArgs e)
         {
-            ThumbChessPiece p;
-            foreach(UIElement uie in chessBoard.chessCanvas.Children)
-            {
-                p = uie as ThumbChessPiece;
-
-                if(p != null && p.pieceID == 0)
-                {
-                    Canvas.SetTop(p, 50);
-                    Canvas.SetLeft(p, 50);
-                }
-            }
+            socketComm.ResetBoard();
         }
     }
 }

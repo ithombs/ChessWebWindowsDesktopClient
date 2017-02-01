@@ -158,5 +158,10 @@ namespace ChessWebWinClient
         {
             webSocket.Send("surr");
         }
+
+        public void ResetBoard()
+        {
+            moveHelper.ResetChessBoard();
+        }
     }
 }

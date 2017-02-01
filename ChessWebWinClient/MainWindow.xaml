@@ -10,7 +10,7 @@
         <Canvas>
             <local:ChessBoard x:Name="chessBoard" PieceMoved="chessBoard_PieceMoved" Canvas.Left="84" Canvas.Top="-46" Height="705" Width="686"></local:ChessBoard>
             <Button x:Name="btnEnterQueue" Content="Enter Queue" Click="btnEnterQueue_Click" Canvas.Left="707" Canvas.Top="551" Width="74"/>
-            <Button x:Name="btnTestMove" Content="TestMove" Click="btnTestMove_Click" Canvas.Left="827" Canvas.Top="551" Width="76"/>
+            <Button x:Name="btnTestMove" Content="Test" Click="btnTestMove_Click" Canvas.Left="827" Canvas.Top="551" Width="76"/>
             <DataGrid x:Name="moveList" Canvas.Left="10" Canvas.Top="76" Height="495" Width="130"  HorizontalAlignment="Left" HeadersVisibility="Column">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="From" Width="64" Binding="{Binding Path=to}" CanUserSort="False"/>

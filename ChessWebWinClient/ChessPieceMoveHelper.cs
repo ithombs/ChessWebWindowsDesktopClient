@@ -9,10 +9,25 @@ namespace ChessWebWinClient
     class ChessPieceMoveHelper
     {
         private System.Windows.Controls.Canvas chessBoard;
+        private List<System.Windows.Shapes.Rectangle> tiles;
+        private List<ThumbChessPiece> chessPieces;
 
         public ChessPieceMoveHelper(System.Windows.Controls.Canvas chessBoard)
         {
             this.chessBoard = chessBoard;
+            tiles = new List<System.Windows.Shapes.Rectangle>();
+            chessPieces = new List<ThumbChessPiece>();
+
+            foreach (System.Windows.UIElement uie in chessBoard.Children)
+            {
+                if(uie is System.Windows.Shapes.Rectangle)
+                {
+                    tiles.Add(uie as System.Windows.Shapes.Rectangle);
+                } else if(uie is ThumbChessPiece)
+                {
+                    chessPieces.Add(uie as ThumbChessPiece);
+                }
+            }
         }
 
         public void MovePiece(string msg)
@@ -34,36 +49,43 @@ namespace ChessWebWinClient
             //NOTE: Dispatcher is required in order to access the UIElement from the UI thread. Program crashes without use of the Dispatcher
             chessBoard.Dispatcher.Invoke((Action)(() =>
             {
-                foreach (System.Windows.UIElement uie in chessBoard.Children)
-                {
-                    tile = uie as System.Windows.Shapes.Rectangle;
-
-                    if (tile != null && tile.Name.Equals("board" + tileX + "_" + tileY))
-                    {
-                        Console.WriteLine("Found the tile!");
-                        break;
-                    }
-                }
+                tile = tiles.Single(t => t.Name.Equals("board" + tileX + "_" + tileY));
 
                 //Get the chess piece from the canvas and move it
-                foreach (System.Windows.UIElement uie in chessBoard.Children)
-                {
-                    chessPiece = uie as ThumbChessPiece;
+                chessPiece = chessPieces.Single(piece => piece.pieceID == Int32.Parse(pieceID));
 
-                    if (chessPiece != null && chessPiece.pieceID == Int32.Parse(pieceID))
-                    {
-                        System.Windows.Controls.Canvas.SetTop(chessPiece, System.Windows.Controls.Canvas.GetTop(tile));
-                        System.Windows.Controls.Canvas.SetLeft(chessPiece, System.Windows.Controls.Canvas.GetLeft(tile));
-                        break;
-                    }
+                System.Windows.Controls.Canvas.SetTop(chessPiece, System.Windows.Controls.Canvas.GetTop(tile));
+                System.Windows.Controls.Canvas.SetLeft(chessPiece, System.Windows.Controls.Canvas.GetLeft(tile));
+
+            }));
+        }
+
+        public void ResetChessBoard()
+        {
+            chessBoard.Dispatcher.Invoke((Action)(() => 
+            {
+                for(int i = 0; i < 16; i++)
+                {
+                    ThumbChessPiece chessPiece = chessPieces[i];
+                    System.Windows.Shapes.Rectangle tile = tiles[i];
+
+                    System.Windows.Controls.Canvas.SetTop(chessPiece, System.Windows.Controls.Canvas.GetTop(tile));
+                    System.Windows.Controls.Canvas.SetLeft(chessPiece, System.Windows.Controls.Canvas.GetLeft(tile));
+                }
+
+                int p = 31;
+                for (int i = 63; i > 63-16; i--)
+                {
+                    
+                    ThumbChessPiece chessPiece = chessPieces[p];
+                    System.Windows.Shapes.Rectangle tile = tiles[i];
+
+                    System.Windows.Controls.Canvas.SetTop(chessPiece, System.Windows.Controls.Canvas.GetTop(tile));
+                    System.Windows.Controls.Canvas.SetLeft(chessPiece, System.Windows.Controls.Canvas.GetLeft(tile));
+
+                    p--;
                 }
             }));
-
-            
-
-            
-            
-            
         }
     }
 }

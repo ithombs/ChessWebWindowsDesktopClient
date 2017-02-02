@@ -10,7 +10,7 @@
         <Canvas>
             <local:ChessBoard x:Name="chessBoard" PieceMoved="chessBoard_PieceMoved" Canvas.Left="84" Canvas.Top="-46" Height="705" Width="686"></local:ChessBoard>
             <Button x:Name="btnEnterQueue" Content="Enter Queue" Click="btnEnterQueue_Click" Canvas.Left="707" Canvas.Top="551" Width="74"/>
-            <Button x:Name="btnTestMove" Content="Test" Click="btnTestMove_Click" Canvas.Left="827" Canvas.Top="551" Width="76"/>
+            <Button x:Name="btnTestMove" Content="Reset" Click="btnTestMove_Click" Canvas.Left="827" Canvas.Top="551" Width="76"/>
             <DataGrid x:Name="moveList" Canvas.Left="10" Canvas.Top="76" Height="495" Width="130"  HorizontalAlignment="Left" HeadersVisibility="Column">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="From" Width="64" Binding="{Binding Path=to}" CanUserSort="False"/>
@@ -18,10 +18,10 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Canvas>
-        <Label Content="Opponent: " HorizontalAlignment="Left" Margin="706,76,0,0" VerticalAlignment="Top" Width="179"/>
-        <Label x:Name="lblOpponent" Content="-----" HorizontalAlignment="Left" Margin="772,76,0,0" VerticalAlignment="Top" Width="141"/>
-        <Label x:Name="lblColor" Content="-----" HorizontalAlignment="Left" Margin="744,107,0,0" VerticalAlignment="Top" Width="141"/>
-        <Label Content="Side: " HorizontalAlignment="Left" Margin="706,107,0,0" VerticalAlignment="Top" Width="141"/>
-        <Label x:Name="lblQueueTimer" Content="Time goes here" HorizontalAlignment="Left" Margin="387,10,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label Content="Opponent: " HorizontalAlignment="Left" Margin="695,76,0,0" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="lblOpponent" Content="-----" HorizontalAlignment="Left" Margin="762,76,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label x:Name="lblColor" Content="-----" HorizontalAlignment="Left" Margin="733,102,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label Content="Side: " HorizontalAlignment="Left" Margin="695,102,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label x:Name="lblInfo" Visibility="Hidden" Content="Info" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="52,10,77,0" Width="784" Height="46" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
     </Grid>
 </Window>

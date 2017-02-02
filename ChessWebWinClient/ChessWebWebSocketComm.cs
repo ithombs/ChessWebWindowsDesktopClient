@@ -14,6 +14,10 @@ namespace ChessWebWinClient
         private ChessPieceMoveHelper moveHelper;
         private BasicMoveData moveData;
 
+        public bool connected { get; set; }
+        public bool inQueue { get; set; }
+        public bool inGame { get; set; }
+
         public ChessWebWebSocketComm(string uri)
         {
             this.uri = uri;
@@ -42,6 +46,7 @@ namespace ChessWebWinClient
         private void WebSocket_Opened(object sender, EventArgs e)
         {
             Console.WriteLine("Connection established to - {0}", uri);
+            connected = true;
             moveData = new BasicMoveData();
         }
 
@@ -58,41 +63,49 @@ namespace ChessWebWinClient
             {
                 string opponentName = e.Data.Split(':')[1];
                 Console.WriteLine(opponentName);
-               
+                inQueue = false;
+                inGame = true;
                 MainWindow.oppName.Dispatcher.Invoke((Action)(() =>
                 {
                     MainWindow.oppName.Content = opponentName;
+                }));
+
+                MainWindow.enterQueue.Dispatcher.Invoke((Action)(() =>
+                {
+                    MainWindow.enterQueue.Content = "Surrender";
                 }));
             }
             else if(e.Data.StartsWith("side:"))
             {
                 string side = e.Data.Split(':')[1];
-                Console.WriteLine(e.Data.Split(':')[1]);
+                //Console.WriteLine(e.Data.Split(':')[1]);
 
                 MainWindow.side.Dispatcher.Invoke((Action)(() =>
                 {
-                    MainWindow.side.Content = "Side: " + side;
+                    MainWindow.side.Content = side;
                 }));
             }
             else if(e.Data.StartsWith("ml1:"))
             {
                 string from = e.Data.Split(':')[1];
                 moveData.from = from;
-                Console.WriteLine("{0}", from);
+                //Console.WriteLine("{0}", from);
             }
             else if(e.Data.StartsWith("ml2:"))
             {
                 string to = e.Data.Split(':')[1];
                 moveData.to= to;
-                Console.WriteLine("{0}", to);
+                //Console.WriteLine("{0}", to);
                 addMoveToList(moveData);
             }
             else if (e.Data.StartsWith("gameOver"))
             {
                 string winner = e.Data.Split(':')[1];
-                MainWindow.queueTime.Dispatcher.Invoke((Action)(() =>
+                inGame = false;
+                MainWindow.info.Dispatcher.Invoke((Action)(() =>
                 {
-                    MainWindow.queueTime.Content = "Winner: " + winner;
+                    MainWindow.info.Content = "Winner: " + winner;
+                    MainWindow.info.Visibility = System.Windows.Visibility.Visible;
                 }));
             }
         }
@@ -112,6 +125,9 @@ namespace ChessWebWinClient
         private void WebSocket_Closed(object sender, EventArgs e)
         {
             Console.WriteLine("Connection ended with - {0}", uri);
+            connected = false;
+            inQueue = false;
+            inGame = false;
         }
 
         public void Close()
@@ -127,6 +143,7 @@ namespace ChessWebWinClient
             
             string connectionString = "connect:" + gameType;
             webSocket.Send(connectionString);
+            inQueue = true;
         }
 
         /*
@@ -134,7 +151,7 @@ namespace ChessWebWinClient
         */
         public void MovePiece(string msg)
         {
-            //move a piece without direct user interaction(uses ChessPieceMoveHelper class to do so. Cause abstraction.)
+            //move a piece without direct user interaction(uses ChessPieceMoveHelper class to do so. 'Cause abstraction.)
             moveHelper.MovePiece(msg);
 
             //add move data to moveList
@@ -142,8 +159,11 @@ namespace ChessWebWinClient
 
         public void SendMove(string msg)
         {
-            webSocket.Send(msg);
-            Console.WriteLine("Sending move: {0}", msg);
+            if(inGame == true)
+            {
+                webSocket.Send(msg);
+                Console.WriteLine("Sending move: {0}", msg);
+            }
             //add move data to moveList
             /*
             MainWindow.sMoveList.Dispatcher.Invoke((Action)(() =>
@@ -153,9 +173,10 @@ namespace ChessWebWinClient
             }));
             */
         }
-
+        
         public void Surrender()
         {
+            inGame = false;
             webSocket.Send("surr");
         }
 

@@ -22,6 +22,6 @@
         <Label x:Name="lblOpponent" Content="-----" HorizontalAlignment="Left" Margin="762,76,0,0" VerticalAlignment="Top" Width="141"/>
         <Label x:Name="lblColor" Content="-----" HorizontalAlignment="Left" Margin="733,102,0,0" VerticalAlignment="Top" Width="141"/>
         <Label Content="Side: " HorizontalAlignment="Left" Margin="695,102,0,0" VerticalAlignment="Top" Width="141"/>
-        <Label x:Name="lblInfo" Visibility="Hidden" Content="Info" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="52,10,77,0" Width="784" Height="46" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label x:Name="lblInfo" Visibility="Hidden" Content="Info" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="52,0,77,0" Width="784" Height="71" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
     </Grid>
 </Window>
